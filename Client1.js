@@ -6,7 +6,7 @@
 
 //Website Setup
 var io = require('socket.io-client')
-var socket = io.connect('http://localdatacenter.org:55555', {reconnect: true});
+var socket = io.connect('http://localdatacenter.org', {reconnect: true});
 
 //For time-zone deficit
 var moment = require('moment-timezone'),
@@ -26,20 +26,11 @@ serialPort.on('data', function (data){//When a new line of text is received from
 		var j = JSON.parse(data);
 
 		console.log(j);
-		setInterval(function() {
-			socket.emit('message', 
+		socket.emit('message', 
 			{ 
 				lastTemperatureIndoor: j.rawIndoorTemp,
 				lastTemperatureOutdoor: j.rawOutdoorTemp,
-				lastAltitude: j.rawAltitude,
-				lastHumidity: j.rawHumidity,
-				lastPressure: j.rawPressure,
-				lastLumens: j.rawLumens,
-				lastHeatIndex: j.rawHeatIndex,
-				dateLastInfo: getDateTimeOffset()
-			});
-		}, 5000);
-	}
+			}
 	catch (ex){
 		console.warn(ex);
 	}
