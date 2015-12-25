@@ -4,7 +4,6 @@ localdatacenter.org
 
 Overview:
 
-Client1 emits data to Server8_express.js
+Client1 emits data to Server4_express
 
-When browser asks for data, webhost(Server8_express) serves data.
 
